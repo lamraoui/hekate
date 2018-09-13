@@ -1366,15 +1366,6 @@ int restore_emmc_part(char *sd_path, sdmmc_storage_t *storage, emmc_part_t *part
 
 		return 0;
 	}
-	//TODO: Should we keep this check?
-	else if (((u32)((u64)f_size(&fp) >> (u64)9)) != totalSectors)
-	{
-		gfx_con.fntsz = 16;
-		EPRINTF("Size of the SD Card backup does not match,\neMMC's selected part size.\n");
-		f_close(&fp);
-
-		return 0;
-	}
 	else
 		gfx_printf(&gfx_con, "\nTotal restore size: %d MiB.\n\n", ((u32)((u64)f_size(&fp) >> (u64)9)) >> SECTORS_TO_MIB_COEFF);
 
